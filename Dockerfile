@@ -17,8 +17,15 @@ ENV PATH="/app/venv/bin:$PATH"
 WORKDIR /app
 
 RUN python -m venv /app/venv
+
+WORKDIR /app/external
+
+ADD https://github.com/Matt-Wood-23/NintendoClients.git#mh3u-revival ./NintendoClients
+
+WORKDIR /app/mh3u
+
 COPY requirements.txt .
-COPY vendor /app/vendor
+COPY vendor vendor
 
 RUN pip install --no-cache-dir -r requirements.txt
 # ENV PATH="/venv/bin:$PATH"
@@ -39,7 +46,8 @@ ENV PATH="/app/venv/bin:$PATH"
 WORKDIR /app
 
 # Copy the source code into the container.
-COPY . .
+COPY --from=build-stage  /app/external /app/external
+COPY . mh3u
 
 # Copy venv contents from build stage to runtime
 COPY --from=build-stage /app/venv /app/venv
@@ -50,4 +58,4 @@ EXPOSE 1224/udp
 EXPOSE 27100-27387/udp
 
 # Run the server.
-CMD ["python", "/app/server.py"]
+CMD ["python", "/app/mh3u/server.py"]
