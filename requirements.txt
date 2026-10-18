@@ -8,8 +8,15 @@
 # any host without MSVC build tools. The server never uses netifaces, so we install a tiny
 # pure-Python stub that satisfies anynet's import. Result: no compiler needed. Run pip from
 # the repo root (the path is relative to it).
-./vendor/netifaces_stub
-anynet==1.1.0     # PIN: 1.2.x breaks on Py3.13 (forward-ref NameError in tls.py)
-anyio
 aioconsole
+anyio
+anynet==1.1.0  # PIN: 1.2.x breaks on Py3.13 (forward-ref NameError in tls.py)
+cffi==2.1.1
+cryptography==50.0.2
+idna==3.20
+multidict==7.1.0
+./vendor/netifaces_stub  # Netifaces in local dir
+pycparser==3.11
 pycryptodome
+pyOpenSSL==26.4.0
+typing_extensions==4.16.0
