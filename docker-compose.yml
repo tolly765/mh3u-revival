@@ -1,8 +1,9 @@
 services:
-  server:
-    build:
-      context: .
+  mh3u-server:
+    image: "ghcr.io/tolly765/mh3u-revival:main"
     ports:
       - 1223:1223
       - 1224:1224
       - "27100-27387:27100-27387"
+    env_file:
+      - ./.env

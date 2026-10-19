@@ -1,0 +1,10 @@
+services:
+  mh3u-server:
+    build:
+      context: .
+    ports:
+      - 1223:1223
+      - 1224:1224
+      - "27100-27387:27100-27387"
+    env_file:
+      - ./.env
