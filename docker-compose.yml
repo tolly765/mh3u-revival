@@ -2,8 +2,8 @@ services:
   mh3u-server:
     image: "ghcr.io/tolly765/mh3u-revival:main"
     ports:
-      - 1223:1223
-      - 1224:1224
-      - "27100-27387:27100-27387"
+      - 1223:1223/udp
+      - 1224:1224/udp
+      - "27100-27387:27100-27387/udp"
     env_file:
       - ./.env
